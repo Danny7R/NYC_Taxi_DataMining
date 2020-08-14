@@ -84,7 +84,7 @@ In K-means clustering results, every cluster has a different color, while the cl
 
 2018 heatmaps and DBSCAN results are presented in figure 4.
 
-![](figures/2018_DBSCAN.png.png)
+![](figures/2018_DBSCAN.png)
 
 _Figure 4: 2018 Heatmaps based on counts (top) and DBSCAN (bottom)_
 
