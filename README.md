@@ -14,7 +14,7 @@ In this study, we will apply different clustering algorithms to find pickup and 
 
 We will start by the methodology section, going over the algorithms and methods used to tackle the problem. Next, the experimental evaluation is explained, which includes details about the data, preprocessing, the experimental setup, and the results. Lastly, a conclusion that summarizes and discusses the results, is presented.
 
-1.
+
 ## Methodology
 
 The main approach in this project is clustering. In other words, the hotspots of the city will be clusters found by different algorithms. Various types of clustering algorithms are available. There are the centroid models, like the k-means algorithm, which produce a single data point as a representative for each cluster, and the density-based models, like DBSCAN and OPTICS, which define clusters as connected dense regions in the data space.
@@ -27,21 +27,20 @@ DBSCAN stands for density-based spatial clustering of applications with noise. A
 
 After deciding on the clustering algorithms, we need a cluster validation method to evaluate and compare the results. Since we do not have the ground truths in this project, we will be using the Silhouette Coefficient. The silhouette value is a measure of how similar (close) an object is to the points in its own cluster, compared to the points in other clusters. It ranges from -1 to +1, while a higher value is indicative of a better clustering structure
 
-1.
+
 ## Experimental Evaluation
 
-  1.
 ## Dataset Analysis
 
 The trip data provided on the website is separated for different types of taxis, e.g. FHV and Taxis (yellow and green). The FHV datasets include data belonging to 2015-2019, while the yellow and green taxis have data from 2009 to 2019. Feature included in all datasets are the pickup and drop-off times and location IDs. Some taxi datasets also include additional information, such as, passenger count, trip distance, and fare amounts.
 
 The main features in this project, pickup and drop-off locations, are, unfortunately, not precise points. Instead, the entire city is divided into zones with arbitrary shapes and surface areas, each having a unique ID. The zone IDs are then provided for each trip in the datasets. Valid location IDs are from 1 to 263. Figure 1 demonstrates the different boroughs of the city and how the zones construct the entire city area.
 
-![](RackMultipart20200814-4-1sytzv9_html_98c4a17a62e129b3.gif)
+![sth](figures/fig1.png)
 
 _Figure 1: NYC boroughs – zones_
 
-  1.
+
 ## Preprocessing
 
 The preprocessing for this project is done in three steps: dealing with missing/unknown values, extracting the (X, Y) coordinates for the location IDs, and scaling. We will go over each step briefly.
