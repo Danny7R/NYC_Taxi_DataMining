@@ -45,11 +45,11 @@ _Figure 1: NYC boroughs – zones_
 
 The preprocessing for this project is done in three steps: dealing with missing/unknown values, extracting the (X, Y) coordinates for the location IDs, and scaling. We will go over each step briefly.
 
-- _ **Missing and Unknown Values** _: there are two approaches to dealing with these values: replacing them with the mean or median or, removing these samples altogether. Because of the large amount of data that we have, here, and the fact that we will be sampling a number of points from the datasets to be able to perform the computations fast enough, it makes more sense to remove those points entirely.
+- _**Missing and Unknown Values**_: there are two approaches to dealing with these values: replacing them with the mean or median or, removing these samples altogether. Because of the large amount of data that we have, here, and the fact that we will be sampling a number of points from the datasets to be able to perform the computations fast enough, it makes more sense to remove those points entirely.
 
 - _**(X, Y) Coordinates**_: in order to perform the clustering, we need the (X, Y) coordinates of the pickup/drop-off locations to calculate the distances. To this end, we need a dataset of locations assigning each to a set of coordinates. We can use the shapefile provided o the website to extract this information. We can use a website to generate a CSV file, or, better yet, use the python Shapefile library which will give us more capabilities as well, throughout the entire project.
 
-- _ **Scaling** __:_ it is a known fact that scaling the data will give us more efficiency and, even better results, as well. Standardization is the method chosen here, which will transform data to have a zero mean and a standard deviation of 1.
+- _**Scaling**_: it is a known fact that scaling the data will give us more efficiency and, even better results, as well. Standardization is the method chosen here, which will transform data to have a zero mean and a standard deviation of 1.
 
 ## Experimental Setup
 
@@ -139,8 +139,3 @@ _Table 2: K-means parameters and silhouette coefficient_
 | **5** | 2019 – FHV | 0.402 |
 
 Although the silhouette coefficient did not prove to be the best validation method in this project as it sometimes produced higher values for clusterings that were clearly not beneficial (e.g. showing most of the city as a big cluster), we can see that the values obtained for DBSCAN results are mostly higher than those for K-means.
-
-
-# Conclusion
-
-In this study, we used clustering analysis to observe and compare New York City&#39;s hotspots over the years, based on For-Hire-Vehicle and Yellow Taxi trip records provided by the NYC Taxi and Limousine Commission (TLC). We applied DBSCAN and K-means algorithms and determined that for this project DBSCAN is a much more suitable tool than K-means, in order to extract information about the city&#39;s hotspots. We also showed that merely counting the number of trips in each zone can be misleading, due to the vast differences in the zones&#39; sizes. By analyzing DBSCAN results, we realized how and why the hotspots changed each year compared to the year before and, finally, we went over a comparison between FHV and Yellow Taxi hotspots of 2019.
