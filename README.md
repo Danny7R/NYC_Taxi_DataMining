@@ -36,7 +36,7 @@ The trip data provided on the website is separated for different types of taxis,
 
 The main features in this project, pickup and drop-off locations, are, unfortunately, not precise points. Instead, the entire city is divided into zones with arbitrary shapes and surface areas, each having a unique ID. The zone IDs are then provided for each trip in the datasets. Valid location IDs are from 1 to 263. Figure 1 demonstrates the different boroughs of the city and how the zones construct the entire city area.
 
-![sth](figures/fig1.png)
+![](figures/fig1.png)
 
 _Figure 1: NYC boroughs – zones_
 
@@ -49,28 +49,23 @@ The preprocessing for this project is done in three steps: dealing with missing/
 
 - _**(X, Y) Coordinates**_: in order to perform the clustering, we need the (X, Y) coordinates of the pickup/drop-off locations to calculate the distances. To this end, we need a dataset of locations assigning each to a set of coordinates. We can use the shapefile provided o the website to extract this information. We can use a website to generate a CSV file, or, better yet, use the python Shapefile library which will give us more capabilities as well, throughout the entire project.
 
-- _ **Scaling** __:_ it is a known fact that scaling the data will give us more efficiency and, even better results, as well. Standardization is the method chosen here, which will transform data to have a zero mean and a standard deviation of 1. Equation 1 demonstrates this process.
+- _ **Scaling** __:_ it is a known fact that scaling the data will give us more efficiency and, even better results, as well. Standardization is the method chosen here, which will transform data to have a zero mean and a standard deviation of 1.
 
-_Equation 1: Standardization_
-
-![](RackMultipart20200814-4-1sytzv9_html_f08706bed3f5212a.png)
-
-  1.
 ## Experimental Setup
 
 All of the algorithms and methods used in the project are coded in python, using the following libraries: NumPy, Pandas, Scikit-learn, Shapefile, Shapely, Matplotlib, and Seaborn. The data sets used for analysis are the FHV datasets belonging to the years 2017, 2018, and 2019, since before 2017 pickup and drop-off locations are not separated, and each trip has only one location ID. Additionally, the 2019 data for yellow taxi is used for a general comparison. We will sample 10,000 data points for each taxi type in each year, which seems to be a good representative of the entire data space and, also, makes computation times more reasonable.
 
-  1.
+
 ## Results
 
 To be able to analyze and compare the results in the best way, the results for each year will be presented separately. For each year, we will first take a glance at the trips by just counting the number of pickup/drop-offs in each zone and drawing the corresponding heat-map. Next, the clustering results using DBSCAN and K-means will be presented. Lastly, we will go over the cluster validation results using the Silhouette Coefficient.
 
-    1.
+
 ### 2017
 
 Figure 2 first demonstrates the heat-map constructed by just counting the number of pickup/drop-offs in each zone (top) and then the DBSCAN clustering results (bottom).
 
-![](RackMultipart20200814-4-1sytzv9_html_109102933ab5ef1e.gif)
+![](figures/2017_DBSCAN.png)
 
 _Figure 2: 2017 Heatmaps based on counts (top) and DBSCAN (bottom)_
 
@@ -78,18 +73,18 @@ In DBSCAN results, points in the same cluster all have the same color, and the h
 
 Figure 3 illustrates the clustering done by the K-means algorithm. K is set to 5 as it seems to suit the data space well.
 
-![](RackMultipart20200814-4-1sytzv9_html_294b785ff6f046d0.gif)
+![](figures/2017_Kmeans.png)
 
 _Figure 3: 2017 – K-means results_
 
 In K-means clustering results, every cluster has a different color, while the cluster centers are shown in black. Although the partitioning seems satisfactory on its own, cluster centers are scattered throughout the city, covering almost all of the area, which fails to give us any insight as to where the city hotspots are. This is mainly due to the algorithm&#39;s sensitivity to noisy data and outliers.
 
-    1.
+
 ### 2018
 
 2018 heatmaps and DBSCAN results are presented in figure 4.
 
-![](RackMultipart20200814-4-1sytzv9_html_c9eb39561b9f6b96.gif)
+![](figures/2018_DBSCAN.png.png)
 
 _Figure 4: 2018 Heatmaps based on counts (top) and DBSCAN (bottom)_
 
@@ -97,28 +92,28 @@ Comparing the zone heatmaps of 2018 with the year before, we can see that it&#39
 
 Figure 5 shows K-means results for 2018.
 
-![](RackMultipart20200814-4-1sytzv9_html_4250f4a5ec3ff387.gif)
+![](figures/2018_Kmeans.png)
 
 _Figure 5: 2018 – K-means results_
 
 Once again, we can see that the k-means cluster centers are dispersed all over the city, covering almost every part. Hence, it fails to help us with any kind of hotspot analysis. Nonetheless, the algorithm seems to have separated the 5 boroughs of the city, well.
 
-    1.
+
 ### 2019
 
 Finally, the results for the last year, 2019, are depicted in figures 6 and 7. By comparing the hotspots of 2019 and 2018, we observe a shift towards the mid-right part of the city. Even though the largest cluster is still in Manhattan, we now also have major hotspots in the upper part of Queens. This means that the FHV services have found their way into the lives of the people from the middle class, as well as the upper-class people in Manhattan. This might be because of more competitive fares and also good marketing. Unfortunately, we do not have any information about trip fares for the FHVs to back this up.
 
-![](RackMultipart20200814-4-1sytzv9_html_e59989c942e67709.gif)
+![](figures/2019_DBSCAN.png)
 
 _Figure 6: 2019 Heatmaps based on counts (top) and DBSCAN (bottom)_
 
-![](RackMultipart20200814-4-1sytzv9_html_bea39758ac6a596e.gif)
+![](figures/2019_Kmeans.png)
 
 _Figure 7: 2019 – K-means results_
 
 At this point, it might also be interesting to have a comparison between the FHVs and a more traditional type of taxi that&#39;s been around for some time, the Yellow Taxi. Figure 8 shows the heatmaps and DBSCAN clustering results for the Yellow Taxi in 2019. The K-means results are skipped this time, as they provided little information about the hotspots.
 
-![](RackMultipart20200814-4-1sytzv9_html_81af286fde06d5b0.gif)
+![](figures/fig8.png)
 
 _Figure 8: 2019 Yellow Taxi Heatmaps based on counts (top) and DBSCAN (bottom)_
 
@@ -145,7 +140,7 @@ _Table 2: K-means parameters and silhouette coefficient_
 
 Although the silhouette coefficient did not prove to be the best validation method in this project as it sometimes produced higher values for clusterings that were clearly not beneficial (e.g. showing most of the city as a big cluster), we can see that the values obtained for DBSCAN results are mostly higher than those for K-means.
 
-1.
+
 # Conclusion
 
 In this study, we used clustering analysis to observe and compare New York City&#39;s hotspots over the years, based on For-Hire-Vehicle and Yellow Taxi trip records provided by the NYC Taxi and Limousine Commission (TLC). We applied DBSCAN and K-means algorithms and determined that for this project DBSCAN is a much more suitable tool than K-means, in order to extract information about the city&#39;s hotspots. We also showed that merely counting the number of trips in each zone can be misleading, due to the vast differences in the zones&#39; sizes. By analyzing DBSCAN results, we realized how and why the hotspots changed each year compared to the year before and, finally, we went over a comparison between FHV and Yellow Taxi hotspots of 2019.
